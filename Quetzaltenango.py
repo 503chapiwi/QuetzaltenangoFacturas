@@ -124,14 +124,31 @@ if st.button("INICIAR PROCESO") and uploaded_pdfs and uploaded_xlsx:
 
         # 2. MASTER MUNICIPALITY DICTIONARY
         MUNICIPIOS = {
-            1: {"nombre_oficial": "Totonicapán", "alias_pdf": ["totonicapan totonicapan", "totonicapan, totonicapan", "totonicapan"]},
-            2: {"nombre_oficial": "San Cristóbal Totonicapán", "alias_pdf": ["san cristobal totonicapan", "san cristobal"]},
-            3: {"nombre_oficial": "San Francisco El Alto", "alias_pdf": ["san francisco el alto", "san francisco"]},
-            4: {"nombre_oficial": "San Andrés Xecul", "alias_pdf": ["san andres xecul", "san andres"]},
-            5: {"nombre_oficial": "Momostenango", "alias_pdf": ["momostenango"]},
-            6: {"nombre_oficial": "Santa María Chiquimula", "alias_pdf": ["santa maria chiquimula", "sta maria chiquimula", "santa maria", "sta maria"]},
-            7: {"nombre_oficial": "Santa Lucía La Reforma", "alias_pdf": ["santa lucia la reforma", "sta lucia la reforma", "santa lucia", "sta lucia"]},
-            8: {"nombre_oficial": "San Bartolo Aguas Calientes", "alias_pdf": ["san bartolo aguas calientes", "san bartolo"]}
+            1: {"nombre_oficial": "Almolonga", "alias_pdf": [""]},
+            2: {"nombre_oficial": "Cabrican", "alias_pdf": [""]},
+            3: {"nombre_oficial": "Cajola", "alias_pdf": [""]},
+            4: {"nombre_oficial": "Cantel", "alias_pdf": [""]},
+            5: {"nombre_oficial": "Coatepeque", "alias_pdf": [""]},
+            6: {"nombre_oficial": "Colomba", "alias_pdf": [""]},
+            7: {"nombre_oficial": "Concepcion Chiquirichapa", "alias_pdf": [""]},
+            8: {"nombre_oficial": "El Palmar", "alias_pdf": [""]},
+            9: {"nombre_oficial": "Flores Costa Cuca", "alias_pdf": [""]},
+            10: {"nombre_oficial": "Genova Costa Cuca", "alias_pdf": [""]},
+            11: {"nombre_oficial": "Huitan", "alias_pdf": [""]},
+            12: {"nombre_oficial": "La Esperanza", "alias_pdf": [""]},
+            13: {"nombre_oficial": "Olintepeque", "alias_pdf": [""]},
+            14: {"nombre_oficial": "Palestina de Los Altos", "alias_pdf": [""]},
+            15: {"nombre_oficial": "Quetzaltenango", "alias_pdf": ["quetzaltenango, quetzaltenango", "quetzaltenango quetzaltenango", "xela"]},
+            16: {"nombre_oficial": "Salcaja", "alias_pdf": [""]},
+            17: {"nombre_oficial": "San Carlos Sija", "alias_pdf": [""]},
+            18: {"nombre_oficial": "San Francisco la Union", "alias_pdf": [""]},
+            19: {"nombre_oficial": "San Juan Ostuncalco", "alias_pdf": [""]},
+            20: {"nombre_oficial": "San Martin Sacatepequez", "alias_pdf": [""]},
+            21: {"nombre_oficial": "San Mateo", "alias_pdf": [""]},
+            22: {"nombre_oficial": "San Miguel Siguila", "alias_pdf": [""]},
+            23: {"nombre_oficial": "Sibila", "alias_pdf": [""]},
+            24: {"nombre_oficial": "Zunil", "alias_pdf": [""]},
+
         }
         
         search_list = []
