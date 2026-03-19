@@ -122,32 +122,34 @@ if st.button("INICIAR PROCESO") and uploaded_pdfs and uploaded_xlsx:
             st.error(f"No encontré las columnas base en el Excel.")
             st.stop()
 
+        department_name = 'quetzaltenango'
+        
         # 2. MASTER MUNICIPALITY DICTIONARY
         MUNICIPIOS = {
-            1: {"nombre_oficial": "Almolonga", "alias_pdf": [""]},
-            2: {"nombre_oficial": "Cabrican", "alias_pdf": [""]},
-            3: {"nombre_oficial": "Cajola", "alias_pdf": [""]},
-            4: {"nombre_oficial": "Cantel", "alias_pdf": [""]},
-            5: {"nombre_oficial": "Coatepeque", "alias_pdf": [""]},
-            6: {"nombre_oficial": "Colomba", "alias_pdf": [""]},
+            1: {"nombre_oficial": "Almolonga"},
+            2: {"nombre_oficial": "Cabrican"},
+            3: {"nombre_oficial": "Cajola"},
+            4: {"nombre_oficial": "Cantel"},
+            5: {"nombre_oficial": "Coatepeque"},
+            6: {"nombre_oficial": "Colomba"},
             7: {"nombre_oficial": "Concepcion Chiquirichapa", "alias_pdf": [""]},
-            8: {"nombre_oficial": "El Palmar", "alias_pdf": [""]},
+            8: {"nombre_oficial": "El Palmar"},
             9: {"nombre_oficial": "Flores Costa Cuca", "alias_pdf": [""]},
             10: {"nombre_oficial": "Genova Costa Cuca", "alias_pdf": [""]},
-            11: {"nombre_oficial": "Huitan", "alias_pdf": [""]},
+            11: {"nombre_oficial": "Huitan"},
             12: {"nombre_oficial": "La Esperanza", "alias_pdf": [""]},
-            13: {"nombre_oficial": "Olintepeque", "alias_pdf": [""]},
+            13: {"nombre_oficial": "Olintepeque"},
             14: {"nombre_oficial": "Palestina de Los Altos", "alias_pdf": [""]},
             15: {"nombre_oficial": "Quetzaltenango", "alias_pdf": ["quetzaltenango, quetzaltenango", "quetzaltenango quetzaltenango", "xela"]},
-            16: {"nombre_oficial": "Salcaja", "alias_pdf": [""]},
+            16: {"nombre_oficial": "Salcaja"},
             17: {"nombre_oficial": "San Carlos Sija", "alias_pdf": [""]},
             18: {"nombre_oficial": "San Francisco la Union", "alias_pdf": [""]},
             19: {"nombre_oficial": "San Juan Ostuncalco", "alias_pdf": [""]},
             20: {"nombre_oficial": "San Martin Sacatepequez", "alias_pdf": [""]},
             21: {"nombre_oficial": "San Mateo", "alias_pdf": [""]},
             22: {"nombre_oficial": "San Miguel Siguila", "alias_pdf": [""]},
-            23: {"nombre_oficial": "Sibila", "alias_pdf": [""]},
-            24: {"nombre_oficial": "Zunil", "alias_pdf": [""]},
+            23: {"nombre_oficial": "Sibila"},
+            24: {"nombre_oficial": "Zunil"},
 
         }
         
@@ -156,13 +158,18 @@ if st.button("INICIAR PROCESO") and uploaded_pdfs and uploaded_xlsx:
             for alias in data["alias_pdf"]:
                 search_list.append((alias, m_id, data["nombre_oficial"]))
                 
-        # CORE FIX: Sorts the list so Totonicapán (ID 1) is ALWAYS evaluated last.
-        # Within the other municipalities, sorts by length to catch specific names first.
-        search_list.sort(key=lambda x: (x[1] == 1, -len(x[0])))
-
+        search_list.sort(key=lambda x: (
+            squish_text(x[2]) == squish_text(department_name),
+            -len(x[0])
+        ))
+        
         EXCEL_MAPPINGS = {
-            1: "totonicapán", 2: "san cristobal", 3: "san francisco", 4: "san andres",
-            5: "momostenango", 6: "santa maria", 7: "santa lucia", 8: "san bartolo"
+            1: "almolonga", 2: "cabrican", 3: "cajola", 4: "cantel", 5: "coatepeque",
+            6: "colomba", 7: "concepcion chiquirichapa", 8: "el palmar", 9: "flores costa cuca",
+            10: "genova costa cuca", 11: "huitan", 12: "la esperanza", 13: "olintepeque", 14: "palestina de los altos", 
+            15: "quetzaltenango", 16: "salcaja", 17: "san carlos sija", 18: "san francisco la union", 
+            19: "san juan ostuncalco", 20: "san martin sacatepequez", 21: "san mateo", 22: "san miguel siguila", 
+            23: "sibilia", 24: "zunil",
         }
 
         # 3. Map Excel Rows to Municipalities
