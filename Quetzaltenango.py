@@ -91,7 +91,7 @@ if st.button("INICIAR PROCESO") and uploaded_pdfs and uploaded_xlsx:
         
         if "Extra Detalles" not in wb.sheetnames:
             ws_det = wb.create_sheet("Extra Detalles")
-            ws_det.append(['Nombre Emisor', 'NIT Emisor', 'NIT Receptor', 'UUID', 'Municipio', 'Alerta % Abarrotes'])
+            ws_det.append(['Nombre Emisor', 'NIT Emisor', 'NIT Receptor', 'Num. DTE', 'Municipio', 'Alerta % Abarrotes'])
         else:
             ws_det = wb["Extra Detalles"]
 
@@ -196,8 +196,8 @@ if st.button("INICIAR PROCESO") and uploaded_pdfs and uploaded_xlsx:
                     t = p.extract_table()
                     if t: tables.extend(t)
 
-                uuid_m = re.search(r'\b[A-F0-9]{8}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{12}\b', text, re.I)
-                uuid_val = uuid_m.group(0).upper() if uuid_m else pdf_file.name
+                dte_m = re.search(r'N[úu]mero\s*de\s*DTE:\s*(\d+)', text, re.IGNORECASE)
+                dte_val = dte_m.group(1) if dte_m else pdf_file.name
 
                 text_squished = squish_text(text)
                 m_id, m_name = None, "N/A"
@@ -253,7 +253,7 @@ if st.button("INICIAR PROCESO") and uploaded_pdfs and uploaded_xlsx:
                     perc_abar = (abar_sum / total_rec) if total_rec > 0 else 0
                     alert_status = "⚠️ ALERTA: >30%" if perc_abar > 0.30 else "OK"
 
-                    ws_det.append([name_e, nit_e, nit_r, uuid_val, m_name, alert_status])
+                    ws_det.append([name_e, nit_e, nit_r, dte_val, m_name, alert_status])
                     new_count += 1
                 else:
                     st.warning(f"No se pudo identificar el municipio en la factura: {pdf_file.name}")
